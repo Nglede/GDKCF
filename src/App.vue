@@ -28,8 +28,8 @@
 
     <!-- 添加新的科目 -->
     <div class="addItem">
-      <input type="text" name="score" v-model="score" placeholder="成绩" />
-      <input type="text" name="credit" v-model="credit" placeholder="学分" />
+      <input type="number" name="score" v-model="score" placeholder="成绩"/>
+      <input type="number" name="credit" v-model="credit" placeholder="学分" />
       <div @click="add()" class="button">确定</div>
       <div @click="elective = !elective" class="button">切换到{{ elective ? '必修' : '选修' }}</div>
       <div @click="clear" class="button">清除全部</div>
@@ -69,10 +69,10 @@ const add = () => {
   credit.value = ''
 }
 const delede = (score: number, credit: number, index: number) => {
-  if (arr[index].score === score && arr[index].credit === credit) {
+  if (arr.length !== 0 && arr[index].score === score && arr[index].credit === credit) {
     arr.splice(index, 1)
   }
-  if (electiveArr[index].score === score && electiveArr[index].credit === credit) {
+  if (electiveArr.length !== 0 && electiveArr[index].score === score && electiveArr[index].credit === credit) {
     electiveArr.splice(index, 1)
   }
 }
@@ -92,6 +92,9 @@ const submit = () => {
   let xxCredit = 0
   let res = 0
   arr.forEach(item => {
+    console.log(bxScore);
+    console.log(bxCredit);
+
     bxScore += item.score * item.credit
     bxCredit += item.credit
   })
@@ -104,8 +107,13 @@ const submit = () => {
       xxCredit += item.credit
     })
 
-    res = ((bxScore / bxCredit) * 100 * 0.85 / 100) + ((xxScore / bxCredit) * 100 * 0.15 / 100)
+    res = ((bxScore / bxCredit) * 100 * 0.85 / 100) + ((xxScore / xxCredit) * 100 * 0.15 / 100)
   }
+  console.log(bxScore);
+  console.log(bxCredit);
+  
+  console.log(res);
+
   returnVal.value = res.toFixed(2)
 }
 
