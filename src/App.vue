@@ -6,20 +6,23 @@
       <div class="header">
         <div class="header-item">成绩</div>
         <div class="header-item">学分</div>
+        <div class="header-item">是否删除</div>
       </div>
 
       <div class="main" v-for="(item,index) in arr" :key="index">
         <div class="main-item">{{ item.score }}</div>
         <div class="main-item">{{ item.credit }}</div>
+        <div class="main-item delede" @click="delede(item.score, item.credit, index)">删除</div>
       </div>
 
       <div class="header" v-if="electiveArr.length !== 0">
-        <div class="header-item">选修</div>
+        <div class="header-item" style="color: #4596b3;">选修</div>
       </div>
 
       <div class="main" v-for="(item,index) in electiveArr" :key="index">
         <div class="main-item">{{ item.score }}</div>
         <div class="main-item">{{ item.credit }}</div>
+        <div class="main-item delede" @click="delede(item.score, item.credit, index)">删除</div>
       </div>
     </div>
 
@@ -35,7 +38,7 @@
     <!-- 计算综合 -->
     <div class="sum">
       <div class="submit" @click="submit">计算课程分</div>
-      <div class="finsh"> {{ returnVal }} </div>
+      <div class="finsh">{{ returnVal }}</div>
     </div>
   </div>
 </template>
@@ -49,7 +52,7 @@ interface suject {
 import { ref, reactive } from 'vue'
 let score = ref()
 let credit = ref()
-let returnVal = ref(0)
+let returnVal = ref()
 
 const elective = ref(false)
 const arr: suject[] = reactive([])
@@ -65,11 +68,19 @@ const add = () => {
   score.value = ''
   credit.value = ''
 }
+const delede = (score: number, credit: number, index: number) => {
+  if (arr[index].score === score && arr[index].credit === credit) {
+    arr.splice(index, 1)
+  }
+  if (electiveArr[index].score === score && electiveArr[index].credit === credit) {
+    electiveArr.splice(index, 1)
+  }
+}
 
 const clear = () => {
   arr.length = 0
   electiveArr.length = 0
-  returnVal.value = 0
+  returnVal.value = ''
 }
 
 const submit = () => {
@@ -95,7 +106,7 @@ const submit = () => {
 
     res = ((bxScore / bxCredit) * 100 * 0.85 / 100) + ((xxScore / bxCredit) * 100 * 0.15 / 100)
   }
-  returnVal.value = res
+  returnVal.value = res.toFixed(2)
 }
 
 </script>
@@ -173,6 +184,12 @@ h1 {
   text-align: center;
   color: #4596b3;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.delede {
+  width: 6%;
+  color: #93b5c6;
   cursor: pointer;
 }
 
