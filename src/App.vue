@@ -28,7 +28,7 @@
 
     <!-- 添加新的科目 -->
     <div class="addItem">
-      <input type="number" name="score" v-model="score" placeholder="成绩"/>
+      <input type="number" name="score" v-model="score" placeholder="成绩" />
       <input type="number" name="credit" v-model="credit" placeholder="学分" />
       <div @click="add()" class="button">确定</div>
       <div @click="elective = !elective" class="button">切换到{{ elective ? '必修' : '选修' }}</div>
@@ -39,6 +39,15 @@
     <div class="sum">
       <div class="submit" @click="submit">计算课程分</div>
       <div class="finsh">{{ returnVal }}</div>
+    </div>
+
+    <div class="footer">
+      Powered by
+      <a
+        href="https://webify.cloudbase.net/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >CloudBase Webify</a>
     </div>
   </div>
 </template>
@@ -111,7 +120,7 @@ const submit = () => {
   }
   // console.log(bxScore);
   // console.log(bxCredit);
-  
+
   // console.log(res);
 
   returnVal.value = res.toFixed(2)
@@ -220,5 +229,24 @@ h1 {
   height: 200px;
   font-size: 50px;
   color: #fff;
+}
+
+.footer {
+  bottom: 20px;
+  position: fixed;
+  color: white;
+}
+
+.footer a {
+  text-decoration: none;
+  background: linear-gradient(0.25turn, #0052d9, #00a4ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+  color: #4596b3;
 }
 </style>
