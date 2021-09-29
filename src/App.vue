@@ -92,8 +92,8 @@ const submit = () => {
   let xxCredit = 0
   let res = 0
   arr.forEach(item => {
-    console.log(bxScore);
-    console.log(bxCredit);
+    // console.log(bxScore);
+    // console.log(bxCredit);
 
     bxScore += item.score * item.credit
     bxCredit += item.credit
@@ -109,10 +109,10 @@ const submit = () => {
 
     res = ((bxScore / bxCredit) * 100 * 0.85 / 100) + ((xxScore / xxCredit) * 100 * 0.15 / 100)
   }
-  console.log(bxScore);
-  console.log(bxCredit);
+  // console.log(bxScore);
+  // console.log(bxCredit);
   
-  console.log(res);
+  // console.log(res);
 
   returnVal.value = res.toFixed(2)
 }
