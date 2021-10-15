@@ -682,8 +682,8 @@ packages:
     resolution: {integrity: sha512-jkjy6pjU1fxUvI51P+gCsxg1u2n8LSt0W6KrCNQceaziKzff74GoWmjVG46KieVzybO1sttPQmYfrwSHey7GUA==}
     dev: true
 
-  /vscode-vue-languageservice/0.27.26:
-    resolution: {integrity: sha512-Xui/YWho4f8OhaUVXYRFe27c4ZHXkZNlblQhh3/vU+TdhDxtcJ/4KK4IWVdotg8Oy0008XI1Ede8QS4zTylDsw==}
+  /vscode-vue-languageservice/0.27.29:
+    resolution: {integrity: sha512-fh8iyuK422fMaG2F3+p11WIh5E1apjEb0+/GyjeCl6fsIrui7wqvu5LM5DNQadnKNdTzjuekJ5TpdWfeoDzToQ==}
     dependencies:
       '@volar/code-gen': 0.27.24
       '@volar/html2pug': 0.27.13
@@ -712,7 +712,7 @@ packages:
       typescript: '*'
     dependencies:
       typescript: 4.4.3
-      vscode-vue-languageservice: 0.27.26
+      vscode-vue-languageservice: 0.27.29
     dev: true
 
   /vue/3.2.19:
