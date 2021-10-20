@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <h1>课程分</h1>
+    <h1>课 程 分</h1>
     <div class="content">
       <div class="header">
         <div class="select">
@@ -11,13 +11,12 @@
             <option :value="item" v-for="item in creditList">{{ item }}</option>
           </select>
         </div>
-        <div class="button" @click="submit">添 加</div>
+        <submit-button @click="submit">确定</submit-button>
       </div>
       <input type="text" name="input" v-model="score" placeholder="分数以空格间隔 如 90 90 89" />
+      <!-- <textInput v-model="score"></textInput> -->
       <div class="record">
-        <!-- <div class="button" @click="calReslust">计 算</div> -->
         <div v-if="bxArr || xxArr" class="button" @click="clear">清 空</div>
-        <!-- <div class="button" @click="calReslust">查 看</div> -->
       </div>
       <div class="reslust">
         <div class="text">{{ res }}</div>
@@ -28,6 +27,9 @@
 
 <script setup lang="ts">
 import { ref, Ref } from 'vue';
+import submitButton from './components/submitButton.vue';
+import textInput from './components/textInput.vue';
+
 
 interface suject {
   score: number,
@@ -77,9 +79,9 @@ const calCreditSum = (arr: suject[]): number => {
 }
 
 // 计算课程分
-const calReslust = ():number => {
+const calReslust = (): number => {
   console.log(xxArr.value.length);
-  
+
   let res = 0
   bxScore.value = calSujectSum(bxArr.value)
   bxCredit.value = calCreditSum(bxArr.value)
@@ -122,11 +124,12 @@ const submit = () => {
   }
 
   res.value = calReslust()
-  console.log('res',res.value);
-  
+  console.log('res', res.value);
+
   score.value = ''
 }
 
+// 清空所有
 const clear = () => {
   bxArr.value = []
   xxArr.value = []
@@ -140,35 +143,34 @@ const clear = () => {
 </script>
 
 <style>
-body,
-html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-input,
-select {
-  outline: none;
+body {
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
 }
 
 .app {
-  height: 100%;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 60%;
+  transform: translate(-50%, -30%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
 }
 
 .app h1 {
-  margin: 6rem 0 4rem 0;
+  margin: 2rem 0 4rem 0;
   font-size: 2.5rem;
+  color: #03e9f4;
 }
 
 .content {
   min-height: 30vh;
-  width: 40%;
+  width: 60%;
   max-width: 70vw;
   display: flex;
   flex-direction: column;
@@ -181,24 +183,29 @@ select {
 }
 
 .content input {
-  height: 2rem;
+  width: 100%;
+  height: 3rem;
+  line-height: 3rem;
+  padding: 0.1rem 0;
+  color: #fff;
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  font-size: 1.5rem;
 }
 
-.header .select select,
-.button {
+input::placeholder {
+  color: #177276;
+  font-size: 1.2rem;
+}
+
+.header .select select {
   width: 3.5rem;
   height: 2rem;
   line-height: 2rem;
   text-align: center;
   font-weight: 600;
   font-size: 1rem;
-}
-
-.button {
-  box-sizing: border-box;
-  cursor: pointer;
-  /* border-radius: 5px; */
-  border: solid 1px #000;
 }
 
 select + select,
@@ -228,5 +235,9 @@ select + select,
 .reslust .details {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.text {
+  color: #fff;
 }
 </style>
