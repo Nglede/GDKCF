@@ -11,24 +11,32 @@
             <option :value="item" v-for="item in creditList">{{ item }}</option>
           </select>
         </div>
-        <submit-button @click="submit">确定</submit-button>
+        <Button @click="submit">确定</Button>
       </div>
       <input type="text" name="input" v-model="score" placeholder="分数以空格间隔 如 90 90 89" />
       <!-- <textInput v-model="score"></textInput> -->
       <div class="record">
-        <div v-if="bxArr || xxArr" class="button" @click="clear">清 空</div>
+        <Button v-if="bxArr || xxArr" @click="clear">重置</Button>
       </div>
       <div class="reslust">
         <div class="text">{{ res }}</div>
       </div>
     </div>
   </div>
+
+  <div class="footer">
+    Powered by
+    <a
+      href="https://webify.cloudbase.net/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >CloudBase Webify</a>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref, Ref } from 'vue';
-import submitButton from './components/submitButton.vue';
-import textInput from './components/textInput.vue';
+import Button from './components/Button.vue';
 
 
 interface suject {
@@ -149,11 +157,9 @@ body {
 }
 
 .app {
-  position: absolute;
-  top: 30%;
-  left: 50%;
+  margin: 5rem auto 0;
   width: 60%;
-  transform: translate(-50%, -30%);
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -228,8 +234,9 @@ select + select,
 
 .reslust .text {
   /* margin-top: 1rem; */
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 500;
+  color: #fff;
 }
 
 .reslust .details {
@@ -237,7 +244,24 @@ select + select,
   text-decoration: underline;
 }
 
-.text {
+.footer {
   color: #fff;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.footer a {
+  text-decoration: none;
+  background: linear-gradient(0.25turn, #0052d9, #00a4ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+  color: #4596b3;
 }
 </style>
